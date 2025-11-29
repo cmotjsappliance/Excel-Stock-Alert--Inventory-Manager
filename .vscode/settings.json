@@ -1,0 +1,2 @@
+for num, word in data:
+print(f"{num}: {word}")
