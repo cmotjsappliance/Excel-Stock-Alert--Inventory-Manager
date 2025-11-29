@@ -1,0 +1,16 @@
+# App Database tree
+
+sequenceDiagram
+    actor User
+    participant CLI as "InventoryManagerCLI (main)"
+    participant Loader as "load_sheet()"
+    participant Finder as "find_low_stock()"
+    participant Printer as "_print_alerts()"
+    User->>CLI: Run CLI with file path and options
+    CLI->>Loader: load_sheet(file)
+    Loader-->>CLI: DataFrame
+    CLI->>Finder: find_low_stock(DataFrame, quantity_col, reorder_col)
+    Finder-->>CLI: Low-stock DataFrame
+    CLI->>Printer: _print_alerts(Low-stock DataFrame, quantity_col, reorder_col)
+    Printer-->>CLI: Print alerts
+    CLI-->>User: Exit code
